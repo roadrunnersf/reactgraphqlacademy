@@ -144,7 +144,7 @@ exports[`<PrivacyPolicy /> should render component 1`] = `
             Who is collecting my information?
           </styled.h2>
           <styled.p>
-            ReactJS Academy will be collecting information. As mentioned previously, ReactJS Academy is part of the LeanJS family. Find out more about LeanJS at
+            React GraphQL Academy will be collecting information. As mentioned previously, React GraphQL Academy is part of the LeanJS family. Find out more about LeanJS at
              
             <Link
               target="_blank"
@@ -171,7 +171,7 @@ exports[`<PrivacyPolicy /> should render component 1`] = `
             Why is it collected?
           </styled.h2>
           <styled.p>
-            Apart from sending you details about any purchases with us, your email address is used to send you newsletters about ReactJS Academy news and offers.
+            Apart from sending you details about any purchases with us, your email address is used to send you newsletters about React GraphQL Academy news and offers.
           </styled.p>
           <styled.h2>
             <Link

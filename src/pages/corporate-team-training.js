@@ -65,7 +65,7 @@ const CorporateTraining = () => (
                 <P>
                   <em>
                     Andru Dunn, Senior Developer at <strong>John Lewis</strong>{' '}
-                    speaks how ReactJS Academy training has improved his team.
+                    speaks how React GraphQL Academy training has improved his team.
                   </em>
                 </P>
               }
@@ -74,7 +74,7 @@ const CorporateTraining = () => (
           <Col md={5} mdOffset={1}>
             <H2>
               <a name="right-for-my-team" />
-              Why ReactJS Academy is great for your dev team
+              Why React GraphQL Academy is great for your dev team
             </H2>
             <Ul unstyled>
               <Li>

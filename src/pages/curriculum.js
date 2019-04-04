@@ -73,7 +73,7 @@ class Curriculum extends React.Component {
     return (
       <React.Fragment>
         <Header
-          titleLines={['Full ReactJS Academy curriculum']}
+          titleLines={['Full React GraphQL Academy curriculum']}
           subtitle="We're proud to say that our curriculum is the most<br />complete and up-to-date on the market - there really is<br />nowhere better to learn React."
           links={[
             { text: 'Differences in our courses ', to: '#differences' },

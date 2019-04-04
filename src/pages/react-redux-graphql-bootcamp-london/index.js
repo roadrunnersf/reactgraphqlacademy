@@ -135,7 +135,7 @@ const BootcampLondon = () => (
               This is not a learn-to-code bootcamp. If you want to learn to
               code, we recommend you to contact our London-based partner{' '}
               <Link to="https://makers.tech/">Makers</Link>. PLUS you'll get a
-              &pound;250 discount using our reference "ReactJS Academy".
+              &pound;250 discount using our reference "React GraphQL Academy".
             </P>
           </Col>
         </Row>

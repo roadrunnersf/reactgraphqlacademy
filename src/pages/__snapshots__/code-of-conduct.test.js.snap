@@ -56,7 +56,7 @@ exports[`<CodeOfConduct /> should render component 1`] = `
                     .
                   </styled.li>
                   <styled.li>
-                    ReactJS Academy is a harassment-free zone - offline AND online.
+                    React GraphQL Academy is a harassment-free zone - offline AND online.
                   </styled.li>
                   <styled.li>
                     If you don’t adhere, you’ll get thrown out without a refund.
@@ -77,7 +77,7 @@ exports[`<CodeOfConduct /> should render component 1`] = `
                   Summary
                 </styled.h2>
                 <styled.p>
-                  Every person at our trainings will be required to agree with this code of conduct and organisers will enforce this code throughout any event run by ReactJS Academy.
+                  Every person at our trainings will be required to agree with this code of conduct and organisers will enforce this code throughout any event run by React GraphQL Academy.
                 </styled.p>
                 <styled.p>
                   All participants are expected to cooperate with us to help guarentee a safe environment for everybody.
@@ -171,10 +171,10 @@ exports[`<CodeOfConduct /> should render component 1`] = `
             If a participant engages in harassing behavior, the event organisers may take any action they deem appropriate, including warning the offender or expulsion from the event with no refund.
           </styled.p>
           <styled.p>
-            If you are being harassed, notice that someone else is being harassed, or have any other concerns, please contact a member of ReactJS Academy staff immediately. Our coaches and representatives will identify themselves to you at the start of any event and may also be identified via branded clothing.
+            If you are being harassed, notice that someone else is being harassed, or have any other concerns, please contact a member of React GraphQL Academy staff immediately. Our coaches and representatives will identify themselves to you at the start of any event and may also be identified via branded clothing.
           </styled.p>
           <styled.p>
-            ReactJS Academy staff will be happy to help participants contact local law enforcement, source escorts, or otherwise assist those experiencing harassment to feel safe for the duration of the training event. We value your attendance immensly and want you to have the best experience possible.
+            React GraphQL Academy staff will be happy to help participants contact local law enforcement, source escorts, or otherwise assist those experiencing harassment to feel safe for the duration of the training event. We value your attendance immensly and want you to have the best experience possible.
           </styled.p>
           <styled.p>
             We expect participants to follow these rules at our trainings and training-related social events.

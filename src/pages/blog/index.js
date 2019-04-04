@@ -22,7 +22,7 @@ const Blog = ({ data }) => {
       />
       <Header
         titleLines={['Blog']}
-        subtitle="Insights into the world of ReactJS Academy"
+        subtitle="Insights into the world of React GraphQL Academy"
         bgImg="about-us"
         fullHeight={false}
         paddingBottom={170}

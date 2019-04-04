@@ -221,7 +221,7 @@ const Community = () => (
                       <Link to={pageUrl}>
                         <Image
                           src={imageUrl}
-                          alt="ReactJS Academy Instagram images. We were unable to bring the descriptive text from Instagram, apologies."
+                          alt="React GraphQL Academy Instagram images. We were unable to bring the descriptive text from Instagram, apologies."
                         />
                       </Link>
                     </Col>
@@ -239,7 +239,7 @@ const Community = () => (
           <Col xs={12} md={6}>
             <Image
               src={MENTORSHIP_IMG}
-              alt="A group of ReactJS Academy coaches and mentors, looking very happy indeed"
+              alt="A group of React GraphQL Academy coaches and mentors, looking very happy indeed"
             />
           </Col>
           <Col xs={12} md={5} mdOffset={1}>
@@ -247,7 +247,7 @@ const Community = () => (
               Our mentor community <a name="mentor-community" />
             </H2>
             <P>
-              ReactJS Academy is devoted to helping developers grow in their
+              React GraphQL Academy is devoted to helping developers grow in their
               professional career. Our dedication stands beyond making them
               awesome React developers. We want them to make an impact in the
               organizations and people they choose to work with.
@@ -258,7 +258,7 @@ const Community = () => (
               creating collaborative workplaces & communities.
             </P>
             <P>
-              The ReactJS Academy mentorship program enables those experienced
+              The React GraphQL Academy mentorship program enables those experienced
               developers in our community to take a step farther and become a
               mentor in our community events and workshops. This way they can
               build the experience required to become not only a great developer

@@ -13,7 +13,7 @@ const BootcampAustin = () => (
   <React.Fragment>
     <Header
       titleLines={['React Redux GraphQL Training']}
-      subtitle="Full list of trainings by ReactJS Academy"
+      subtitle="Full list of trainings by React GraphQL Academy"
       bgImg="training-event"
     />
     <TopSection>

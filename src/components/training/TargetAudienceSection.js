@@ -24,7 +24,7 @@ const TargetAudienceSection = () => (
             <Image
               src={PART_TIME_IMG}
               width="100%"
-              alt="ReactJS Academy coach Alex assists a student, being next to them, inspecting their code and helping them on their learning path."
+              alt="React GraphQL Academy coach Alex assists a student, being next to them, inspecting their code and helping them on their learning path."
             />
           </Col>
         </HideComponentsUsingCss>
@@ -66,7 +66,7 @@ const TargetAudienceSection = () => (
             This is not a learn-to-code course. If you want to learn to code, we
             recommend you contact our London-based partner{' '}
             <Link to="https://makers.tech/">Makers</Link>. PLUS you'll get a
-            &pound;250 discount using our reference "ReactJS Academy".
+            &pound;250 discount using our reference "React GraphQL Academy".
           </P>
         </Col>
       </Row>

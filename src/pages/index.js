@@ -94,11 +94,11 @@ const IndexPage = () => (
             <Image
               src={COURSE_COLLAB}
               width="100%"
-              alt="Four developers gathered around a laptop, pair programming together on a piece of work during a ReactJS Academy bootcamp."
+              alt="Four developers gathered around a laptop, pair programming together on a piece of work during a React GraphQL Academy bootcamp."
             />
           </Col>
           <Col md={5} mdOffset={1}>
-            <H2>What will I get from a ReactJS Academy training?</H2>
+            <H2>What will I get from a React GraphQL Academy training?</H2>
             <Ul unstyled>
               <Li>
                 <BulletIcon icon={ProductionReadyIcon} />
@@ -148,7 +148,7 @@ const IndexPage = () => (
         <Row>
           <Col mdOffset={1} md={10}>
             <AttendeeQuote
-              quote="ReactJS Academy has literally taken me from no React experience to feeling like I can go back to my company as an expert. It’s forwarded my career significantly."
+              quote="React GraphQL Academy has literally taken me from no React experience to feeling like I can go back to my company as an expert. It’s forwarded my career significantly."
               fullname="Dan Jones"
               job="React developer"
               company="AgilityWorks"
@@ -162,7 +162,7 @@ const IndexPage = () => (
       <Grid>
         <Row>
           <Col md={5} mdOffset={1}>
-            <H2>Is this training right for me? Why ReactJS Academy</H2>
+            <H2>Is this training right for me? Why React GraphQL Academy</H2>
             <Ul unstyled>
               <Li>
                 <BulletIcon icon={NotBegginerIcon} />
@@ -199,7 +199,7 @@ const IndexPage = () => (
               <Image
                 src={WHY_REACTJS_ACADEMY}
                 width="100%"
-                alt="Female ReactJS Academy student wearing glasses concentrating whilst looking into the distance, surrounded by other students with a laptop in the near distance."
+                alt="Female React GraphQL Academy student wearing glasses concentrating whilst looking into the distance, surrounded by other students with a laptop in the near distance."
               />
             </Col>
           </HideComponentsUsingCss>
@@ -217,7 +217,7 @@ const IndexPage = () => (
                 <P>
                   <em>
                     Andru Dunn, Senior Developer at <strong>John Lewis</strong>{' '}
-                    speaks how ReactJS Academy training has improved his team.
+                    speaks how React GraphQL Academy training has improved his team.
                   </em>
                 </P>
               }
@@ -225,7 +225,7 @@ const IndexPage = () => (
           </Col>
           <Col md={5} mdOffset={1}>
             <H2>
-              What's in it for your company - why ReactJS Academy is great for
+              What's in it for your company - why React GraphQL Academy is great for
               your team
             </H2>
             <Ul unstyled>

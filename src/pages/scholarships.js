@@ -74,7 +74,7 @@ const scholarships = () => (
   <React.Fragment>
     <Header
       titleLines={['Scholarships & discounts']}
-      subtitle="ReactJS Academy love to see our alumni improve their lives, </br> which is why we're committed to providing a helping hand when we can. "
+      subtitle="React GraphQL Academy love to see our alumni improve their lives, </br> which is why we're committed to providing a helping hand when we can. "
       links={[
         {
           text: 'Professional scholarships ',
@@ -111,7 +111,7 @@ const scholarships = () => (
                     React developer, this is for you.
                   </P>
                   <P>
-                    Our corporate partners love the quality of ReactJS Academy
+                    Our corporate partners love the quality of React GraphQL Academy
                     alumni and are willing to fund your training before taking
                     you on as a fully-fledged React developer.{' '}
                   </P>

@@ -135,7 +135,7 @@ const Footer = () => (
               <Col md={6}>
                 <P sm>
                   Copyright &copy; {`2017 - ${new Date().getFullYear()}`},
-                  ReactJS Academy is a{' '}
+                  React GraphQL Academy is a{' '}
                   <Link to="https://leanjs.com">LeanJS</Link> product
                 </P>
               </Col>
