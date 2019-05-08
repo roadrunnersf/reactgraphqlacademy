@@ -30,6 +30,7 @@
     "react-lazyload": "^2.3.0",
     "react-live": "^1.12.0",
     "react-photo-gallery": "^7.0.2",
+    "react-relay": "^4.0.0",
     "react-runkit": "^0.9.0",
     "react-scroll": "^1.7.10",
     "react-share": "^2.3.1",
@@ -63,7 +64,8 @@
     "cy:open": "./node_modules/.bin/cypress open",
     "cy:run": "./node_modules/.bin/cypress run",
     "test:e2e": "start-server-and-test serve http://localhost:9000 cy:open",
-    "ci:e2e": "start-server-and-test serve http://localhost:9000 cy:run"
+    "ci:e2e": "start-server-and-test serve http://localhost:9000 cy:run",
+    "relay": "relay-compiler --src ./src --schema ./schema.graphql"
   },
   "devDependencies": {
     "@babel/plugin-transform-regenerator": "^7.4.4",
@@ -74,6 +76,7 @@
     "babel-core": "^6.26.3",
     "babel-jest": "^23.4.2",
     "babel-loader": "^6.4.1",
+    "babel-plugin-relay": "^4.0.0",
     "babel-plugin-syntax-class-properties": "^6.13.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-latest": "^6.24.1",
@@ -90,6 +93,7 @@
     "gatsby-plugin-sharp": "^2.0.36",
     "gatsby-plugin-webpack-bundle-analyzer": "^1.0.4",
     "gatsby-transformer-sharp": "^2.1.19",
+    "graphql": "^14.3.0",
     "graphql-tag": "^2.9.2",
     "husky": "^1.0.0-rc.13",
     "identity-obj-proxy": "^3.0.0",
@@ -104,6 +108,7 @@
     "prettier": "^1.12.0",
     "react-storybook-decorator-background": "^1.0.5",
     "react-test-renderer": "^16.5.0",
+    "relay-compiler": "^4.0.0",
     "start-server-and-test": "^1.7.1",
     "wait-for-expect": "^1.1.0"
   },

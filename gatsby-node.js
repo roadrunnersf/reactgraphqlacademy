@@ -68,6 +68,7 @@ const Webpack = require('webpack')
 
 exports.onCreateBabelConfig = ({ actions }) => {
   actions.setBabelPlugin({
+    name: 'relay',
     name: '@babel/plugin-transform-regenerator',
     name: '@babel/plugin-transform-runtime',
   })
