@@ -74,7 +74,7 @@ const preconnectUrls = [
 const Layout = ({ children }) => (
   <StaticQuery
     query={graphql`
-      query SiteTitleQuery {
+      query layoutTitleQuery {
         site {
           siteMetadata {
             title

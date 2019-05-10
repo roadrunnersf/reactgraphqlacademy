@@ -1,0 +1,1534 @@
+type Attendee {
+  """Identifier of the user attending the training"""
+  userId: ID!
+
+  """Id of the training"""
+  trainingId: ID!
+
+  """Id of the instance of a training being attendeed"""
+  trainingInstanceId: ID!
+
+  """Username of the user attending the training"""
+  username: String!
+  status: TrainingAttendeeStatusEnum!
+
+  """When the feedback was created"""
+  createdAt: DateTime!
+
+  """When the feedback was updated"""
+  updatedAt: DateTime
+}
+
+"""A connection to a list of items."""
+type attendeeConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [attendeeEdge]
+  totalCount: Int
+}
+
+"""An edge in a connection."""
+type attendeeEdge {
+  """The item at the end of the edge"""
+  node: Attendee
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
+"""Input for filtering attendees query"""
+input AttendeeFilterInput {
+  """The status of an attendee"""
+  status: TrainingAttendeeStatusEnum
+
+  """The id of the training"""
+  trainingId: ID
+
+  """The id of the training instance"""
+  trainingInstanceId: ID
+}
+
+enum AttendeeInstanceSortEnum {
+  username
+  createdAt
+  updatedAt
+}
+
+"""Input for ordering attendees query"""
+input AttendeeOrderingInput {
+  sort: AttendeeInstanceSortEnum
+  direction: OrderingDirectionEnum
+}
+
+type CoachRating {
+  """Id of the trainer being feedbacked"""
+  userId: ID!
+
+  """The trainer was knowledgeable about the training topics"""
+  knowledgeable: Int!
+
+  """The trainer explained well the topics"""
+  explainedWell: Int!
+}
+
+"""Input for the ratings of a coach in a given training"""
+input CoachRatingInput {
+  """Id of the trainer being rated"""
+  userId: ID!
+
+  """The trainer was knowledgeable about the training topics"""
+  knowledgeable: Int!
+
+  """The trainer explained well the topics"""
+  explainedWell: Int!
+}
+
+"""Input for creating a Feedback"""
+input createFeedbackInput {
+  """Id of the instance of the training being feedbacked"""
+  trainingInstanceId: ID!
+
+  """Id of the unit in that training to be feedbacked"""
+  trainingUnitId: ID
+
+  """Id of the user who is feedbacking the training"""
+  userId: ID
+
+  """Username of the user who is feedbacking the training"""
+  username: String
+
+  """Ratings of the coaches in a given training"""
+  coachesRating: [CoachRatingInput]
+
+  """Ratings of the practice in a given training"""
+  practiceRating: PracticeRatingInput
+
+  """General ratings in a given training"""
+  rating: RatingInput
+
+  """What did you like most about this training?  """
+  commentLikeMost: String
+
+  """What aspects of the training could be improved? """
+  commentToImprove: String
+
+  """Please share other comments or expand on previous responses here"""
+  othersComments: String
+
+  """A comment that a trainee shares publicly in a given feedback"""
+  publicComment: String
+}
+
+"""Input for creating a Training"""
+input createTrainingInput {
+  """
+  Id of a list image that was uploaded to a temporary bucket and it will be set as the training list image
+  """
+  listImageId: ID
+  type: String
+  level: LevelTypeEnum
+  description: TrainingDescriptionInput!
+
+  """Id of the user or organization that owns the training"""
+  ownerId: ID
+}
+
+"""Input for creating an instance of a training"""
+input createTrainingInstanceInput {
+  """The id that identifies a training"""
+  trainingId: ID!
+  coaches: [TrainingInstanceUserInput]
+  mentors: [TrainingInstanceUserInput]
+  venueName: String
+  venuePictures: [String]
+  address: String
+  mapUrl: String
+  postCode: String
+  city: String!
+  cityCountry: String!
+  country: String
+  language: String
+  price: Int
+  currency: String
+
+  """The days of the week the training instance takes place"""
+  daysOfTheWeek: [DaysOfTheWeekEnum]
+  startDate: DateTime
+  utcOffset: Int
+  endDate: DateTime
+  maxAttendees: Int
+
+  """Id of the user or organization that owns the training instance"""
+  ownerId: ID
+}
+
+"""Input for creating a TrainingUnit"""
+input createTrainingUnitInput {
+  title: String!
+
+  """Training objectives, this is the new trainee's skills or takeaways"""
+  objectives: String!
+
+  """
+  Training overview, this is a short description (MAX 300 chars) of the training
+  """
+  overview: String
+
+  """The training agenda, how the class is scheduled"""
+  agenda: String
+
+  """
+  The training methodology, how the class is organized and what teaching techniques are used
+  """
+  methodology: String
+
+  """
+  The syllabus or curriculum of the training, it describes in detail what is going to be taught
+  """
+  syllabus: String
+
+  """What the trainee should know before the training or bring to it"""
+  prerequisites: String
+
+  """A list of video urls of the training unit"""
+  videoUrls: [String]
+
+  """The number of the unit, e.g.: unit 1, unit 2, etc."""
+  number: Int
+}
+
+"""Input for creating a Voucher"""
+input createVoucherInput {
+  """Id of the voucher to voucher"""
+  code: String!
+
+  """Integer between 1 and 100"""
+  discountPercentage: Int
+  discountAmount: Int
+  description: String
+  expiresAt: DateTime
+  startsAt: DateTime
+
+  """How many trainings that can be bought with the voucher"""
+  maxRedemptions: Int
+}
+
+enum CurrencyTypeEnum {
+  eur
+  gbp
+  usd
+  aud
+}
+
+"""
+A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the
+`date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO
+8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar DateTime
+
+enum DaysOfTheWeekEnum {
+  Monday
+  Tuesday
+  Wednesday
+  Thursday
+  Friday
+  Saturday
+  Sunday
+}
+
+type Deleted {
+  """Id of the type that has been deleted"""
+  id: ID
+
+  """Date the type has been deleted"""
+  deletedAt: DateTime!
+}
+
+type Feedback {
+  """Identifier of the feedback"""
+  id: ID!
+
+  """Id of the training being feedbacked"""
+  trainingId: ID!
+
+  """Id of the training being feedbacked"""
+  trainingInstanceId: ID!
+
+  """Id of the organization that received the feedback"""
+  organizationId: ID
+
+  """Id of the training unit"""
+  trainingUnitId: ID
+
+  """Id of the user who is feedbacking the training"""
+  userId: ID
+
+  """The username of user who created the feedback"""
+  username: String
+
+  """Feedbacks of the trainers in a given training"""
+  coachesRating: [CoachRating]
+
+  """Feedbacks of the practice in a given training"""
+  practiceRating: PracticeRating
+  rating: Rating
+  averageRating: Float
+
+  """What did you like most about this training?  """
+  commentLikeMost: String
+
+  """What aspects of the training could be improved? """
+  commentToImprove: String
+
+  """Please share other comments or expand on previous responses here"""
+  othersComments: String
+
+  """A comment that a trainee shares publicly in a given feedback"""
+  publicComment: String
+
+  """When the feedback was created"""
+  createdAt: DateTime!
+
+  """When the feedback was updated last time"""
+  updatedAt: DateTime
+  training: Training
+  trainingInstance: TrainingInstance
+}
+
+"""A connection to a list of items."""
+type feedbackConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [feedbackEdge]
+  totalCount: Int
+}
+
+"""An edge in a connection."""
+type feedbackEdge {
+  """The item at the end of the edge"""
+  node: Feedback
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
+"""Input for filtering feedbacks query"""
+input FeedbacksFilterInput {
+  """The id of the training"""
+  trainingId: ID
+
+  """Id of the organization that received the feedback"""
+  organizationId: ID
+
+  """The id of the user who created the feedbacks"""
+  userId: ID
+
+  """The id of a coach in a training instance"""
+  coachId: ID
+
+  """The id of the instance of a training"""
+  trainingInstanceId: ID
+}
+
+"""Input for ordering feedbacks query"""
+input FeedbacksOrderingInput {
+  sort: FeedbackSortEnum
+  direction: OrderingDirectionEnum
+}
+
+enum FeedbackSortEnum {
+  createdAt
+  contentOrganized
+  objectivesMet
+  venueFacilities
+}
+
+enum ImageUploadTypeEnum {
+  user_profile_image
+  training_list_image
+}
+
+enum LevelTypeEnum {
+  beginner
+  intermediate
+  advanced
+  all
+}
+
+"""Input for making a Payment"""
+input makePaymentInput {
+  """Id of the training instance to buy"""
+  trainingInstanceId: ID!
+
+  """The number of items to buy"""
+  quantity: Int!
+  voucherCode: String
+
+  """The email fo the buyer"""
+  email: String!
+
+  """The Stripe token used as a source for the payment"""
+  token: String!
+  companyName: String
+  vatCountry: String
+  vatNumber: String
+}
+
+type Mutation {
+  """Sets the status of an attendee in a training"""
+  setAttendeeStatus(attendee: setAttendeeStatusInput!): Attendee
+
+  """Delete a training."""
+  deleteTraining(
+    """The id that identifies a training"""
+    id: ID!
+  ): Deleted
+
+  """Update a training."""
+  updateTraining(
+    """The training data to update."""
+    training: updateTrainingInput!
+  ): Training
+
+  """Add a training to the database."""
+  createTraining(
+    """The training data to add."""
+    training: createTrainingInput!
+  ): Training
+
+  """Delete a training unit."""
+  deleteTrainingUnit(
+    """The id that identifies a training unit"""
+    trainingUnitId: ID!
+
+    """The id that identifies the training of the unit to be deleted"""
+    trainingId: ID!
+  ): Deleted
+
+  """Update a training unit."""
+  updateTrainingUnit(
+    """The training unit data to update."""
+    trainingUnit: updateTrainingUnitInput!
+
+    """The id that identifies the training of the unit to be updated"""
+    trainingId: ID!
+  ): TrainingUnitType
+
+  """Add a training unit to the database."""
+  createTrainingUnit(
+    """The data of the training unit to be created."""
+    trainingUnit: createTrainingUnitInput!
+
+    """The id that identifies the training of the unit to be created"""
+    trainingId: ID!
+  ): TrainingUnitType
+
+  """Delete a training instance."""
+  deleteTrainingInstance(
+    """The id that identifies an instance of a training to be deleted"""
+    id: ID!
+  ): Deleted
+
+  """Update a training instance."""
+  updateTrainingInstance(
+    """The training instance data to update."""
+    trainingInstance: updateTrainingInstanceInput!
+  ): TrainingInstance
+
+  """Adds an instance to a training"""
+  createTrainingInstance(
+    """The training instance data to add."""
+    trainingInstance: createTrainingInstanceInput!
+  ): TrainingInstance
+
+  """Delete a training instance unit."""
+  deleteTrainingInstanceUnit(
+    """The id that identifies a training unit"""
+    trainingUnitId: ID!
+
+    """
+    The id that identifies the training instance that contains the unit to be deleted
+    """
+    trainingInstanceId: ID!
+  ): Deleted
+
+  """Update or insert a training instance unit."""
+  upsertTrainingInstanceUnit(
+    """The training instance unit data to update or insert."""
+    trainingInstanceUnit: upsertTrainingInstanceUnitInput!
+  ): TrainingInstanceUnit
+
+  """Delete a feedback."""
+  deleteFeedback(
+    """The id that identifies a feedback"""
+    id: ID!
+  ): Deleted
+
+  """Assigns the public comment to a feedback."""
+  setPublicCommentToFeedback(
+    """Id of the feedback being publicly commented"""
+    id: ID!
+
+    """The public comment being assigned to the feedback"""
+    publicComment: String!
+
+    """Id of the user setting a public comment to the feedback"""
+    userId: ID
+  ): Feedback
+
+  """Assigns a feedback to a user."""
+  assignFeedback(
+    """Id of the feedback being assigned"""
+    id: ID!
+
+    """Id of the user who is assigned to the feedback"""
+    userId: ID!
+  ): Feedback
+
+  """Add a feedback to the Academy database."""
+  createFeedback(
+    """The feedback data to add."""
+    feedback: createFeedbackInput!
+  ): Feedback
+
+  """Update a user."""
+  updateUser(
+    """The user data to update."""
+    user: updateUserInput!
+  ): User
+  singleImageUpload(file: Upload!, imageUploadType: ImageUploadTypeEnum!): UploadedImage
+
+  """Makes a payment."""
+  makePayment(
+    """The payment data."""
+    payment: makePaymentInput!
+  ): Payment
+
+  """Delete a Voucher."""
+  deleteVoucher(
+    """The id that identifies a Voucher"""
+    id: ID!
+  ): Deleted
+
+  """Update a list of vouchers."""
+  updateVouchers(
+    """The vouchers to update."""
+    vouchers: [updateVoucherInput]!
+  ): [Voucher]
+
+  """Adds a list of voucher to a given training instance."""
+  createVouchers(
+    """The vouchers data to add."""
+    vouchers: [createVoucherInput]!
+
+    """Id of the training instance to apply the voucher"""
+    trainingInstanceId: ID!
+    type: VoucherTypeEnum!
+  ): [Voucher]
+}
+
+enum OrderingDirectionEnum {
+  ASC
+  DESC
+}
+
+enum OrganizationRoleType {
+  organization_role_coach
+  organization_role_admin
+}
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+}
+
+type Payment {
+  id: ID!
+  currency: CurrencyTypeEnum!
+
+  """Id of the user or organization that owns the payment"""
+  ownerId: ID
+  amount: Int!
+  trainingInstanceId: ID!
+  trainingId: ID!
+
+  """Training for which the voucher is valid"""
+  training: Training
+
+  """Training Instance for which the voucher can be redeemed"""
+  trainingInstance: TrainingInstance
+  email: String!
+  userId: ID
+  description: String
+  metadata: String
+  createdAt: DateTime!
+  updatedAt: DateTime
+}
+
+"""A connection to a list of items."""
+type PaymentConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [PaymentEdge]
+  totalCount: Int
+}
+
+"""An edge in a connection."""
+type PaymentEdge {
+  """The item at the end of the edge"""
+  node: Payment
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
+"""Input for filtering payments query"""
+input PaymentFilterInput {
+  currency: CurrencyTypeEnum
+  amount: Int
+  ownerId: Int
+  trainingInstanceId: ID
+  email: String
+  userId: String
+}
+
+"""Input for ordering payments query"""
+input PaymentOrderingInput {
+  sort: PaymentSortEnum
+  direction: OrderingDirectionEnum
+}
+
+enum PaymentSortEnum {
+  currency
+  createdAt
+  amount
+  email
+}
+
+type PracticeRating {
+  """The trainer gave enough feedback and attention"""
+  enoughAttentionFeedback: Int!
+
+  """Participation and interaction were encouraged"""
+  enoughInteractionPractice: Int!
+}
+
+"""Input for the practice rating in a given training"""
+input PracticeRatingInput {
+  """The trainer gave enough feedback and attention"""
+  enoughAttentionFeedback: Int!
+
+  """Participation and interaction were encouraged"""
+  enoughInteractionPractice: Int!
+}
+
+type Price {
+  currency: CurrencyTypeEnum!
+  amount: Float!
+}
+
+type Query {
+  trainingsConnection(after: String, first: Int, before: String, last: Int, filter: TrainingsFilterInput, orderBy: TrainingsOrderingInput): trainingConnection
+
+  """Get a specific training."""
+  training(
+    """The id of the training"""
+    id: ID
+
+    """The slug of the training"""
+    slug: String
+
+    """The username who owns the training"""
+    username: String
+  ): Training
+  trainingInstancesConnection(after: String, first: Int, before: String, last: Int, filter: TrainingInstancesFilterInput, orderBy: TrainingInstancesOrderingInput): trainingInstancesConnectionConnection
+
+  """Get a specific training instance."""
+  trainingInstance(
+    """The id of the training instance"""
+    id: ID!
+  ): TrainingInstance
+  feedbacksConnection(after: String, first: Int, before: String, last: Int, filter: FeedbacksFilterInput, orderBy: FeedbacksOrderingInput): feedbackConnection
+
+  """Get a specific feedback."""
+  feedback(
+    """The id of the feedback"""
+    id: ID!
+  ): Feedback
+  attendeesConnection(after: String, first: Int, before: String, last: Int, filter: AttendeeFilterInput, orderBy: AttendeeOrderingInput): attendeeConnection
+
+  """Get a specific attendee."""
+  attendee(
+    """The id of the use attending an instance of a training"""
+    userId: ID!
+
+    """The trainingInstanceId of the instance of a training"""
+    trainingInstanceId: ID!
+  ): Attendee
+  usersConnection(after: String, first: Int, before: String, last: Int, filter: UserFilterInput, orderBy: UserOrderingInput): userConnection
+
+  """Get a specific user."""
+  user(
+    """The id of the user"""
+    id: ID
+
+    """The username that identifies the user"""
+    username: String
+  ): User
+  vouchersConnection(after: String, first: Int, before: String, last: Int, filter: VoucherFilterInput, orderBy: VoucherOrderingInput): VoucherConnection
+
+  """Get a specific voucher."""
+  voucher(
+    """The id of the voucher"""
+    id: ID
+  ): Voucher
+
+  """
+  Integer that represents the amount of discount in the currency of the original price
+  """
+  voucherGetNetPriceWithDiscount(
+    """The id of the training instance we want to apply the discount"""
+    trainingInstanceId: ID!
+
+    """The id of the training instance we want to apply the discount"""
+    quantity: Int!
+
+    """The id of the training instance we want to apply the discount"""
+    voucherCode: String!
+  ): Price
+  paymentsConnection(after: String, first: Int, before: String, last: Int, filter: PaymentFilterInput, orderBy: PaymentOrderingInput): PaymentConnection
+
+  """Get a specific payment."""
+  payment(
+    """The id of the payment"""
+    id: ID!
+  ): Payment
+
+  """Validates a VAT number."""
+  isVatNumberValid(
+    """The country of the VAT number"""
+    countryCode: String!
+
+    """The VAT number"""
+    vatNumber: String!
+  ): Boolean
+}
+
+type Rating {
+  """The content was organized and easy to follow"""
+  contentOrganized: Int!
+
+  """The materials distributed were helpful"""
+  materialHelpful: Int!
+
+  """The training objectives were met"""
+  objectivesMet: Int!
+
+  """The meeting room and facilities were adequate and comfortable"""
+  venueFacilities: Int!
+}
+
+"""Input for the general rating in a given training"""
+input RatingInput {
+  """The training objectives were met"""
+  objectivesMet: Int!
+
+  """The content was organized and easy to follow"""
+  contentOrganized: Int!
+
+  """The materials distributed were helpful"""
+  materialHelpful: Int!
+
+  """The meeting room and facilities were adequate and comfortable"""
+  venueFacilities: Int!
+}
+
+type RatingSummaryType {
+  """Sum of all ratings given to this item"""
+  totalRating: Float
+
+  """Number of ratings given to this item"""
+  ratingCount: Int
+}
+
+enum RoleTypeEnum {
+  admin
+  coach
+  organization
+}
+
+"""Input for setting the status of an attendee in a training"""
+input setAttendeeStatusInput {
+  """Id of the instance of a training being attendeed"""
+  trainingInstanceId: ID!
+  status: TrainingAttendeeStatusEnum!
+}
+
+type SocialNetwork {
+  """E.g. 'facebook', 'twitter', etc"""
+  networkName: String!
+
+  """The URL of the relevant profile"""
+  url: String!
+}
+
+"""Input for the user's social networks"""
+input SocialNetworkInput {
+  """The name of the social network"""
+  networkName: String!
+
+  """The url of the social network"""
+  url: String!
+}
+
+enum TimeFilterEnum {
+  past
+  future
+}
+
+type Training {
+  id: ID!
+
+  """Id of the user or organization that owns the training"""
+  ownerId: ID
+
+  """
+  The slug that identifies a user'a training, e.g. react-fundamentals-crash-course
+  """
+  slug: String!
+
+  """The username that identifies the user who owns the training"""
+  username: String!
+  listImage: TrainingListImage
+  type: String
+  description: TrainingDescriptionType!
+
+  """Different units that compose a training"""
+  units: [TrainingUnitType]
+
+  """A given training unit that belongs to the training"""
+  unit(
+    """Provide a traning unit id to fetch only a given training unit"""
+    trainingUnitId: ID
+  ): TrainingUnitType
+  level: LevelTypeEnum
+
+  """Summary data about ratings given to this training"""
+  totalRatingSummary: RatingSummaryType
+
+  """UserID who created the training"""
+  createdBy: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime
+
+  """Users attending a training instance"""
+  attendeesConnection(trainingInstanceId: ID, after: String, first: Int, before: String, last: Int): attendeeConnection
+
+  """
+  All feedbacks of a training left by attendees - including those who were not
+  logged in and / or did not leave a public comment
+  """
+  ratingsConnection(after: String, first: Int, before: String, last: Int): feedbackConnection
+
+  """
+  Public feedbacks of a training, left by attendees who logged in and added a public comment
+  """
+  feedbacksConnection(after: String, first: Int, before: String, last: Int): feedbackConnection
+
+  """Most recent past instances of this training"""
+  instance(instanceId: ID): TrainingInstance
+
+  """Most recent past instances of this training"""
+  recentInstancesConnection: trainingInstancesConnectionConnection
+
+  """Soonest future instances of this training"""
+  upcomingInstancesConnection: trainingInstancesConnectionConnection
+}
+
+enum TrainingAttendeeStatusEnum {
+  attending
+  waitlisted
+  interested
+  canceled
+}
+
+"""A connection to a list of items."""
+type trainingConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [trainingEdge]
+  totalCount: Int
+}
+
+"""Input for the description fields of a training"""
+input TrainingDescriptionInput {
+  title: String!
+
+  """Training objectives, this is the new trainee's skills or takeaways"""
+  objectives: String!
+
+  """
+  Training overview, this is a short description (MAX 300 chars) of the training
+  """
+  overview: String
+
+  """The training agenda, how the class is scheduled"""
+  agenda: String
+
+  """
+  The training methodology, how the class is organized and what teaching techniques are used
+  """
+  methodology: String
+
+  """
+  The syllabus or curriculum of the training, it describes in detail what is going to be taught
+  """
+  syllabus: String
+
+  """What the trainee should know before the training or bring to it"""
+  prerequisites: String
+
+  """A list of video urls of the training unit"""
+  videoUrls: [String]
+}
+
+type TrainingDescriptionType {
+  title: String!
+
+  """Training objectives, this is the new trainee's skills or takeaways"""
+  objectives: String!
+
+  """Training overview, this is a short description of the training"""
+  overview: String
+
+  """
+  The training methodology, how the class is organized and what teaching techniques are used
+  """
+  methodology: String
+
+  """The training agenda, how the class is scheduled"""
+  agenda: String
+
+  """
+  The syllabus or curriculum of the training, it describes in detail what is going to be taught
+  """
+  syllabus: String
+
+  """What the trainee should know before the training or bring to it"""
+  prerequisites: String
+
+  """A list of video urls to promote the training"""
+  videoUrls: [String]
+}
+
+"""An edge in a connection."""
+type trainingEdge {
+  """The item at the end of the edge"""
+  node: Training
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
+type TrainingInstance {
+  id: ID!
+  trainingId: ID!
+
+  """Id of the user or organization that owns the training instance"""
+  ownerId: ID
+
+  """The days of the week the training instance takes place"""
+  daysOfTheWeek: [DaysOfTheWeekEnum]
+  coaches: [TrainingInstanceUserType]
+  mentors: [TrainingInstanceUserType]
+
+  """Different units that compose a training instance"""
+  units: [TrainingInstanceUnit]
+
+  """A given training instance unit that belongs to the training instance"""
+  unit(
+    """
+    Provide a traning instance unit id to fetch only a given training instance unit
+    """
+    trainingUnitId: ID
+  ): TrainingInstanceUnit
+  sponsors: [TrainingInstanceSponsorType]
+  address: String
+  mapUrl: String
+  venueName: String
+  venuePictures: [String]
+  training: Training
+  city: String!
+  cityCountry: String
+  postCode: String
+  country: String
+  price: Float
+  discountPrice: Float @deprecated(reason: "Use auto vouchers instead")
+  currency: CurrencyTypeEnum
+  startDate: DateTime
+  endDate: DateTime
+  utcOffset: Int
+  maxAttendees: Int
+  language: String
+
+  """Summary data about ratings given to this training instance"""
+  totalRatingSummary: RatingSummaryType
+
+  """UserID who created the training"""
+  createdBy: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime
+
+  """Users who are attending an instance of a training"""
+  attendeesConnection(after: String, first: Int, before: String, last: Int): attendeeConnection
+
+  """Users who are waitlisted in this instance of a training"""
+  waitlistedConnection(after: String, first: Int, before: String, last: Int): attendeeConnection
+
+  """Other classes that may be of interest"""
+  relatedInstancesConnection(after: String, first: Int, before: String, last: Int): trainingInstancesConnectionConnection
+
+  """Upcoming automatic discount for this training instance"""
+  upcomingAutomaticDiscounts(after: String, first: Int, before: String, last: Int): VoucherConnection
+}
+
+"""A connection to a list of items."""
+type trainingInstancesConnectionConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [trainingInstancesConnectionEdge]
+  totalCount: Int
+}
+
+"""An edge in a connection."""
+type trainingInstancesConnectionEdge {
+  """The item at the end of the edge"""
+  node: TrainingInstance
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
+"""Input for filtering training instances query"""
+input TrainingInstancesFilterInput {
+  """The id of the training of the instance"""
+  trainingId: ID
+
+  """Id of the user or organization that owns the training instance"""
+  ownerId: ID
+
+  """The name of the venue"""
+  venueName: String
+
+  """The city of the training instance"""
+  city: String
+  startDate: TimeFilterEnum
+
+  """The language of the training instance"""
+  language: String
+}
+
+"""Input for filtering training instances query"""
+input TrainingInstancesFilterInputForUser {
+  """
+  The status of this user's attendance (e.g. attending, waitlist, coaching, mentoring)
+  """
+  status: TrainingInstanceUserStatus
+}
+
+"""Input for ordering trainings instances query"""
+input TrainingInstancesOrderingInput {
+  sort: TrainingInstanceSortEnum
+  direction: OrderingDirectionEnum
+}
+
+enum TrainingInstanceSortEnum {
+  startDate
+  endDate
+  price
+  updatedAt
+}
+
+type TrainingInstanceSponsorType {
+  url: String!
+  imageUrl: String!
+}
+
+type TrainingInstanceUnit {
+  coaches: [TrainingInstanceUserType!]
+  mentors: [TrainingInstanceUserType]
+  trainingUnitId: ID!
+  startDate: DateTime
+  endDate: DateTime
+  utcOffset: Int
+
+  """Summary data about ratings given to this training unit instance"""
+  totalRatingSummary: RatingSummaryType
+}
+
+"""Input for coaches or mentors in a training"""
+input TrainingInstanceUserInput {
+  userId: ID!
+  firstName: String
+  lastName: String
+  username: String
+  bio: String
+}
+
+enum TrainingInstanceUserStatus {
+  attending
+  waitlisted
+  interested
+  canceled
+  mentor
+  coach
+}
+
+type TrainingInstanceUserType {
+  userId: ID!
+  firstName: String
+  lastName: String
+  username: String
+  bio: String
+  profilePicUrl: String @deprecated(reason: "Use profileImage instead")
+  profileImage: UserProfileImage
+}
+
+type TrainingListImage {
+  """Training image of size 100x100"""
+  size100x100: String
+
+  """Training image of size 400x400"""
+  size400x400: String
+}
+
+"""Input for filtering trainings query"""
+input TrainingsFilterInput {
+  """Id of the user or organization that owns the training"""
+  ownerId: ID
+
+  """The type of the training"""
+  type: String
+
+  """The level of the training"""
+  level: LevelTypeEnum
+}
+
+"""Input for ordering trainings query"""
+input TrainingsOrderingInput {
+  sort: TrainingSortEnum
+  direction: OrderingDirectionEnum
+}
+
+enum TrainingSortEnum {
+  createdAt
+  updatedAt
+  title
+}
+
+type TrainingUnitType {
+  title: String!
+
+  """Training objectives, this is the new trainee's skills or takeaways"""
+  objectives: String!
+
+  """Training overview, this is a short description of the training"""
+  overview: String
+
+  """
+  The training methodology, how the class is organized and what teaching techniques are used
+  """
+  methodology: String
+
+  """The training agenda, how the class is scheduled"""
+  agenda: String
+
+  """
+  The syllabus or curriculum of the training, it describes in detail what is going to be taught
+  """
+  syllabus: String
+
+  """What the trainee should know before the training or bring to it"""
+  prerequisites: String
+
+  """A list of video urls to promote the training"""
+  videoUrls: [String]
+
+  """The id of the training unit"""
+  id: ID!
+
+  """The number of the unit, e.g.: unit 1, unit 2, etc."""
+  number: Int
+
+  """Summary data about ratings given to this training unit"""
+  totalRatingSummary: RatingSummaryType
+}
+
+"""Input for updating a Training"""
+input updateTrainingInput {
+  """The id that identifies a training"""
+  id: ID!
+
+  """
+  Id of a list image that was uploaded to a temporary bucket and it will be set as the training list image
+  """
+  listImageId: ID
+  type: String
+  level: LevelTypeEnum
+  description: TrainingDescriptionInput!
+}
+
+"""Input for updating an instance of a training"""
+input updateTrainingInstanceInput {
+  """The id that identifies an instance of a training"""
+  id: ID!
+
+  """The id that identifies a training"""
+  trainingId: ID!
+  coaches: [TrainingInstanceUserInput]
+  mentors: [TrainingInstanceUserInput]
+  venueName: String
+  venuePictures: [String]
+  address: String
+  mapUrl: String
+  postCode: String
+  city: String!
+  cityCountry: String!
+  country: String
+  language: String
+  price: Int
+  currency: String
+
+  """The days of the week the training instance takes place"""
+  daysOfTheWeek: [DaysOfTheWeekEnum]
+  startDate: DateTime
+  utcOffset: Int
+  endDate: DateTime
+  maxAttendees: Int
+}
+
+"""Input for updating a TrainingUnit"""
+input updateTrainingUnitInput {
+  title: String!
+
+  """Training objectives, this is the new trainee's skills or takeaways"""
+  objectives: String!
+
+  """
+  Training overview, this is a short description (MAX 300 chars) of the training
+  """
+  overview: String
+
+  """The training agenda, how the class is scheduled"""
+  agenda: String
+
+  """
+  The training methodology, how the class is organized and what teaching techniques are used
+  """
+  methodology: String
+
+  """
+  The syllabus or curriculum of the training, it describes in detail what is going to be taught
+  """
+  syllabus: String
+
+  """What the trainee should know before the training or bring to it"""
+  prerequisites: String
+
+  """A list of video urls of the training unit"""
+  videoUrls: [String]
+
+  """The number of the unit, e.g.: unit 1, unit 2, etc."""
+  number: Int
+
+  """The id that identifies the training unit to be updated"""
+  id: ID!
+}
+
+"""Input for updating a User"""
+input updateUserInput {
+  """The id that identifies a user"""
+  id: ID!
+
+  """The code that identifies a user"""
+  username: String!
+  email: String!
+  emailOptin: Boolean
+  emailOptinReactjsacademy: Boolean
+  emailOptinHow: String
+  firstName: String
+  lastName: String
+
+  """An short description or intro of the user"""
+  biography: String
+
+  """
+  Id of a profile picture that was uploaded to a temporary bucket and it will be set as the user profile picture
+  """
+  profileImageId: ID
+  socialNetworks: [SocialNetworkInput]
+}
+
+"""Input for updating a Voucher"""
+input updateVoucherInput {
+  """The id that identifies a voucher"""
+  id: ID!
+
+  """Id of the voucher to voucher"""
+  code: String!
+
+  """Integer between 1 and 100"""
+  discountPercentage: Int
+  discountAmount: Int
+  description: String
+  expiresAt: DateTime
+  startsAt: DateTime
+
+  """How many trainings that can be bought with the voucher"""
+  maxRedemptions: Int
+}
+
+scalar Upload
+
+type UploadedImage {
+  imageId: ID!
+  imageUrl: String!
+}
+
+"""Input for upserting a TrainingInstanceUnit"""
+input upsertTrainingInstanceUnitInput {
+  """
+  The id of the training unit to which this instance unit is related to.
+  """
+  trainingUnitId: ID!
+
+  """
+  The id of the training instance to which the new instance unit is related to
+  """
+  trainingInstanceId: ID!
+  coaches: [TrainingInstanceUserInput!]
+  mentors: [TrainingInstanceUserInput]
+  startDate: DateTime
+  endDate: DateTime
+  utcOffset: Int
+}
+
+type User {
+  id: ID!
+
+  """The username that identifies a user"""
+  username: String!
+
+  """Different roles that a user can have in different organizations"""
+  organizations: [UserOrganizationRoleType]
+
+  """
+  If true then we can't use this username. This field to be true, tue user must
+  confirm and the app has to verify that there is no other user using that username.
+  """
+  mustConfirmUsername: Boolean
+  email: String
+  emailOptinOn: DateTime
+  emailOptinReactjsacademyOn: DateTime
+  emailOptinHow: String
+
+  """
+  If true then we don't know if it's real email. This means that the email we
+  have is an email the user introduced manualy, and we didn't verify. It didn't
+  come from a third party network like Twitter or Github. We should send an
+  email with a hash and the user should click on that hash to verify it's real.
+  Then this will be false
+  """
+  mustConfirmEmail: Boolean
+
+  """
+  This is means the email is provided by third parties like Github, Twitter,
+  etc; and the user should confirm they still use that email since they
+  registered in those networks
+  """
+  mustConfirmProviderEmail: Boolean
+  firstName: String
+  lastName: String
+  biography: String
+  profileImage: UserProfileImage
+  roles: [RoleTypeEnum]
+
+  """
+  Any social network profiles that the user has, each with a "type" and a "url"
+  """
+  socialNetworks: [SocialNetwork]
+
+  """Summary data about ratings given to this user"""
+  totalRatingSummary: RatingSummaryType
+
+  """Feedbacks that other users have given this user"""
+  feedbacksReceivedConnection(after: String, first: Int, before: String, last: Int): feedbackConnection
+
+  """Feedbacks that this user has given other users"""
+  feedbacksPlaced(after: String, first: Int, before: String, last: Int): feedbackConnection
+
+  """Past training instances that this user either attended or taught at"""
+  pastTrainingInstances(after: String, first: Int, before: String, last: Int, filter: TrainingInstancesFilterInputForUser): trainingInstancesConnectionConnection
+
+  """
+  Future training instances that this user is either attending or teaching at
+  """
+  upcomingTrainingInstancesConnection(after: String, first: Int, before: String, last: Int, filter: TrainingInstancesFilterInputForUser): trainingInstancesConnectionConnection
+  updatedAt: DateTime
+  createdAt: DateTime!
+}
+
+"""A connection to a list of items."""
+type userConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [userEdge]
+  totalCount: Int
+}
+
+"""An edge in a connection."""
+type userEdge {
+  """The item at the end of the edge"""
+  node: User
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
+"""Input for filtering users query"""
+input UserFilterInput {
+  """Users with an specific role"""
+  role: RoleTypeEnum
+  organizationId: ID
+  organizationRole: OrganizationRoleType
+  firstName: String
+  lastName: String
+  email: String
+}
+
+"""Input for ordering users query"""
+input UserOrderingInput {
+  sort: UserSortEnum
+  direction: OrderingDirectionEnum
+}
+
+type UserOrganizationRoleType {
+  """The id of the organization"""
+  id: ID!
+
+  """The user's roles in a given organization"""
+  roles: [String]
+}
+
+type UserProfileImage {
+  """Profile image of size 100x100"""
+  size100x100: String
+
+  """Profile image of size 400x400"""
+  size400x400: String
+}
+
+enum UserSortEnum {
+  username
+  createdAt
+  updatedAt
+}
+
+type Voucher {
+  id: ID!
+  code: String!
+  trainingInstanceId: ID!
+
+  """Id of the user or organization that owns the voucher"""
+  ownerId: ID
+  trainingId: ID!
+
+  """Training for which the voucher is valid"""
+  training: Training
+
+  """Training Instance for which the voucher can be redeemed"""
+  trainingInstance: TrainingInstance
+  type: VoucherTypeEnum!
+  redemptions: Int!
+  discountPercentage: Float
+  discountAmount: Float
+  description: String
+  expiresAt: DateTime
+  startsAt: DateTime
+  maxRedemptions: Int
+  createdAt: DateTime!
+  updatedAt: DateTime
+}
+
+"""A connection to a list of items."""
+type VoucherConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [VoucherEdge]
+  totalCount: Int
+}
+
+"""An edge in a connection."""
+type VoucherEdge {
+  """The item at the end of the edge"""
+  node: Voucher
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
+"""Input for filtering vouchers query"""
+input VoucherFilterInput {
+  code: String
+  type: VoucherTypeEnum
+  createdBy: ID
+  trainingInstanceId: ID
+  trainingId: ID
+}
+
+"""Input for ordering vouchers query"""
+input VoucherOrderingInput {
+  sort: VoucherSortEnum
+  direction: OrderingDirectionEnum
+}
+
+enum VoucherSortEnum {
+  code
+  discountPercentage
+  discountAmount
+  redemptions
+  maxRedemptions
+  expiresAt
+  updatedAt
+  createdAt
+}
+
+enum VoucherTypeEnum {
+  auto
+  code
+}

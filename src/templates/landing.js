@@ -179,7 +179,7 @@ const Landing = ({ data }) => {
 }
 
 export const query = graphql`
-  query LandingQuery($slug: String!) {
+  query landingQuery($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       frontmatter {
         country

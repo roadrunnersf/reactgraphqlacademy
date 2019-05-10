@@ -189,7 +189,7 @@ const BlogPost = ({ data }) => {
 }
 
 export const query = graphql`
-  query BlogPostQuery($slug: String!) {
+  query blogPostQuery($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       frontmatter {
         title

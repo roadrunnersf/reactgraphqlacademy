@@ -205,7 +205,7 @@ const Header = ({
 }) => (
   <StaticQuery
     query={graphql`
-      query getBackgroundImage($maxWidth: Int = 1000) {
+      query HeaderBackgroundImageQuery($maxWidth: Int = 1000) {
         allFile(filter: { relativePath: { regex: "/covers/" } }) {
           nodes {
             relativePath
