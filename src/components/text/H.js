@@ -23,7 +23,7 @@ export const H1Ref = styled(H1)`
 
 export const H2_STYLE = `
   ${FONT_FAMILY};
-  font-weight: 800;
+  font-weight: 700;
   font-style: normal;
   font-stretch: normal;
   line-height: 1.5;
