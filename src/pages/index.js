@@ -14,7 +14,7 @@ import { Col, Row } from '../components/layout/Grid'
 import { H2 } from '../components/text'
 import AttendeeQuote from 'src/components/training/AttendeeQuote'
 import Ul, { Li } from '../components/layout/Ul'
-import FullCurriculumsReact from '../components/curriculum/FullCurriculumsReact'
+import FullCurriculumsPartTime from '../components/curriculum/FullCurriculumsPartTime'
 import FullCurriculumsGraphQL from '../components/curriculum/FullCurriculumsGraphQL'
 import { createSocialMetas } from '../components/utils'
 import { RootHeader as Header } from '../components/layout/Header'
@@ -131,9 +131,9 @@ const IndexPage = () => {
             </Row>
             <Segment pt={[4, 7]}>
               {selectedTab === TAB_IMMERSIVE ? (
-                <FullCurriculumsReact trainings={trainings} />
-              ) : (
                 <FullCurriculumsGraphQL trainings={trainings} />
+              ) : (
+                <FullCurriculumsPartTime trainings={trainings} />
               )}
             </Segment>
           </TopSection>
