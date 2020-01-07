@@ -78,11 +78,11 @@ export const tabItemVariantProps = {
   },
 }
 
-const TAB_REACT = 'react'
-const TAB_GRAPHQL = 'graphql'
+const TAB_IMMERSIVE = 'react'
+const TAB_PARTTIME = 'graphql'
 
 const IndexPage = () => {
-  const [selectedTab, setTab] = useState(TAB_REACT)
+  const [selectedTab, setTab] = useState(TAB_IMMERSIVE)
 
   return (
     <Layout>
@@ -111,26 +111,26 @@ const IndexPage = () => {
           <TopSection mt={[0, -225]}>
             <Row>
               <Col lgOffset={1} lg={11}>
-                <StyledTabTitle>Select Technology: </StyledTabTitle>
+                <StyledTabTitle>Select learning experience: </StyledTabTitle>
                 <TabItem
-                  onClick={() => setTab(TAB_REACT)}
+                  onClick={() => setTab(TAB_IMMERSIVE)}
                   to="#tab-curriculum"
-                  variant={selectedTab === TAB_REACT ? 'active' : undefined}
+                  variant={selectedTab === TAB_IMMERSIVE ? 'active' : undefined}
                 >
-                  React
+                  Immersive
                 </TabItem>
                 <TabItem
-                  variant={selectedTab === TAB_GRAPHQL ? 'active' : undefined}
-                  onClick={() => setTab(TAB_GRAPHQL)}
+                  variant={selectedTab === TAB_PARTTIME ? 'active' : undefined}
+                  onClick={() => setTab(TAB_PARTTIME)}
                   to="#tab-curriculum"
                 >
-                  GraphQL
+                  Part-time
                 </TabItem>
                 <a name="tab-curriculum" />
               </Col>
             </Row>
             <Segment pt={[4, 7]}>
-              {selectedTab === TAB_REACT ? (
+              {selectedTab === TAB_IMMERSIVE ? (
                 <FullCurriculumsReact trainings={trainings} />
               ) : (
                 <FullCurriculumsGraphQL trainings={trainings} />
