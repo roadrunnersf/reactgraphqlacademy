@@ -32,6 +32,10 @@
       {
         "to": "/graphql/curriculum",
         "text": "GraphQL Curriculum"
+      },
+      {
+        "to": "/graphql/conference",
+        "text": "GraphQL mini-conference"
       }
     ]
   },

@@ -45,6 +45,10 @@ exports[`<DesktopMenu /> should render the list of menu items 1`] = `
             "text": "GraphQL Curriculum",
             "to": "/graphql/curriculum",
           },
+          Object {
+            "text": "GraphQL mini-conference",
+            "to": "/graphql/conference",
+          },
         ]
       }
       text="GraphQL"
